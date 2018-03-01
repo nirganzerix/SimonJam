@@ -3,6 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { Provider } from 'react-redux'
+import { makeStore } from './redux/index'
 
 const simonTheme = getMuiTheme({
   fontFamily: 'Trebuchet MS, sans-serif',
@@ -23,12 +25,14 @@ const simonTheme = getMuiTheme({
 })
 
 class App extends React.Component {
-
   render () {
+  const store = makeStore()
     return (
-      <MuiThemeProvider muiTheme={simonTheme}>
-        <SimonGame />
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <MuiThemeProvider muiTheme={simonTheme}>
+          <SimonGame />
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }
