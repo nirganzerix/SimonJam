@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import color from './colorReducer'
+import colorState from './colorReducer'
 
 export default combineReducers({
-  color,
+  colorState,
 })

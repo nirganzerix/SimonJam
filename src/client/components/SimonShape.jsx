@@ -1,13 +1,17 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {addColor} from '../redux/actions/colorActions';
 
-const SimonShape = ({color}) => {
+const SimonShape = ({color, addColor}) => {
   const addInput = () => {
-    console.log('hit button');
+    addColor(color);
   }
 
   return (
     <RaisedButton
+
       className="simon-shape"
       label="button"
       labelStyle={{display:'none'}}
@@ -21,4 +25,12 @@ const SimonShape = ({color}) => {
   );
 }
 
-export default SimonShape;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({addColor}, dispatch);
+}
+
+const mapStateToProps = (store) => {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SimonShape);
