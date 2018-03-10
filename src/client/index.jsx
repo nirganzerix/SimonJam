@@ -26,7 +26,9 @@ const simonTheme = getMuiTheme({
 
 class App extends React.Component {
   render () {
+    const sagaMiddleware = createSagaMiddleware()
   const store = makeStore()
+  sagaMiddleware.run(colorSaga)
     return (
       <Provider store={store}>
         <MuiThemeProvider muiTheme={simonTheme}>

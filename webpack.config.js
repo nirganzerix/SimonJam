@@ -7,6 +7,7 @@ const APP_DIR = path.resolve(__dirname, 'src/client');
 
 const config = {
   entry: [
+    'babel-polyfill',
     APP_DIR + '/index.jsx',
     APP_DIR + '/styles/style.scss'
   ],
