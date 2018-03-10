@@ -1,8 +1,12 @@
-import {createStore, applyMiddleware} from 'redux'
+import {applyMiddleware, createStore, compose} from 'redux'
+import {makeMiddleware, runSagas} from './middleware'
 import reducers from './reducers/index'
-import createSagaMiddleware from 'redux-saga'
-import {colorSaga} from './sagas'
 
-const sagaMiddleware = createSagaMiddleware()
-
-export const makeStore = () => createStore(reducers, applyMiddleware(sagaMiddleware))
+export const makeStore = () => {
+  const store = createStore(
+    reducers,
+    applyMiddleware(...makeMiddleware())
+  )
+  runSagas()
+  return store
+}

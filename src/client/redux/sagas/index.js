@@ -1,3 +1,3 @@
-export function* colorSaga() {
+export default function* colorSaga() {
    console.log("Hello world");
 }

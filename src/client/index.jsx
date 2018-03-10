@@ -6,6 +6,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux'
 import { makeStore } from './redux/index'
 
+const store = makeStore()
+
 const simonTheme = getMuiTheme({
   fontFamily: 'Trebuchet MS, sans-serif',
   palette: {
@@ -26,9 +28,6 @@ const simonTheme = getMuiTheme({
 
 class App extends React.Component {
   render () {
-    const sagaMiddleware = createSagaMiddleware()
-  const store = makeStore()
-  sagaMiddleware.run(colorSaga)
     return (
       <Provider store={store}>
         <MuiThemeProvider muiTheme={simonTheme}>
