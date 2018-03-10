@@ -1,2 +1,4 @@
 export const ADD_COLOR = 'ADD_COLOR'
 export const ADD_GAME_COLOR = 'ADD_GAME_COLOR'
+export const START_GAME = 'START_GAME'
+export const CHANGE_BACKGROUND_COLOR = 'CHANGE_BACKGROUND_COLOR'

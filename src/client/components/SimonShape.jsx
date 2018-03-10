@@ -11,7 +11,6 @@ const SimonShape = ({color, addColor}) => {
 
   return (
     <RaisedButton
-
       className="simon-shape"
       label="button"
       labelStyle={{display:'none'}}

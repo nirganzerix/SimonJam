@@ -4,25 +4,13 @@ import { RaisedButton } from 'material-ui';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addGameColor} from '../redux/actions/colorActions';
+import {startGame} from '../redux/actions/colorActions';
 
 
-const SimonGame = ({addGameColor, gameColors}) => {
+const SimonGame = ({startGame, gameColors}) => {
 
-  const startGame = () => {
-      addGameColor('blue');
-      console.log(gameColors);
-      /*const shapes = document.getElementsByClassName('simon-shape');
-      console.log(shapes);
-      _.each(gameColors, function(gColor){
-        let flashShape = _.find(shapes, function(shape){
-          return shape.children[0].style.backgroundColor === gColor;
-        });
-        flashShape.children[0].style.backgroundColor = 'white';
-        setTimeout(function(){
-          flashShape.children[0].style.backgroundColor = 'blue';
-        },500);
-      });*/
+  const clickMe = () => {
+      startGame();
   };
 
   return (
@@ -33,13 +21,13 @@ const SimonGame = ({addGameColor, gameColors}) => {
         <SimonShape color="purple"/>
         <SimonShape color="green"/>
         <br/>
-        <RaisedButton onClick={()=>{startGame()}}>Click Me!</RaisedButton>
+        <RaisedButton onClick={()=>{clickMe()}}>Click Me!</RaisedButton>
     </div>
   );
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addGameColor}, dispatch);
+  return bindActionCreators({startGame}, dispatch);
 }
 
 const mapStateToProps = (store) => {
