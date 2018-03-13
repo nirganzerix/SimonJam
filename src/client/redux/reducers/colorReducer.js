@@ -14,7 +14,7 @@ const reducer = (state = initialState, action = {} ) => {
       return {...state, gameColors: [...state.gameColors, action.payload ] }
     case CHANGE_BACKGROUND_COLOR:
       let clonedColors = _.clone(state.shapeColors)
-      clonedColors[action.payload.shapeIndex] = action.payload.newColor
+      clonedColors[action.payload.squareIndex] = action.payload.newColor
       return {...state, shapeColors: clonedColors}
     default:
       return state

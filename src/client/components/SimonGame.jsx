@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {startGame} from '../redux/actions/colorActions';
 
 
-const SimonGame = ({startGame, gameColors}) => {
+const SimonGame = ({startGame, gameColors, shapeColors}) => {
 
   const clickMe = () => {
       startGame();
@@ -15,13 +15,17 @@ const SimonGame = ({startGame, gameColors}) => {
 
   return (
     <div>
-        <SimonShape color="red"/>
-        <SimonShape color="blue"/>
-        <br/>
-        <SimonShape color="purple"/>
-        <SimonShape color="green"/>
-        <br/>
-        <RaisedButton onClick={()=>{clickMe()}}>Click Me!</RaisedButton>
+    {
+      _.map(shapeColors, function(shapeColor, index){
+        if(index % 2 === 1) {
+          return <span key={shapeColor}><SimonShape color={shapeColor} /><br/></span>
+        }
+        else {
+          return <span key={shapeColor}><SimonShape color={shapeColor} /></span>
+        }
+      })
+    }
+      <RaisedButton onClick={()=>{clickMe()}}>Click Me!</RaisedButton>
     </div>
   );
 }
@@ -31,7 +35,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (store) => {
-  return {gameColors: store.colorState.gameColors};
+  return {
+    gameColors: store.colorState.gameColors,
+    shapeColors: store.colorState.shapeColors
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimonGame);

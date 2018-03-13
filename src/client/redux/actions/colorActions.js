@@ -1,4 +1,4 @@
-import { ADD_COLOR, ADD_GAME_COLOR, START_GAME } from '../constants/colorConstants'
+import { ADD_COLOR, ADD_GAME_COLOR, START_GAME, CHANGE_BACKGROUND_COLOR } from '../constants/colorConstants'
 
 export const addColor = color => {
   return {
