@@ -1,4 +1,4 @@
-import { ADD_COLOR, ADD_GAME_COLOR, CHANGE_BACKGROUND_COLOR } from '../constants/colorConstants'
+import { ADD_COLOR, ADD_GAME_COLOR, CHANGE_BACKGROUND_COLOR, CLEAR_USER_COLORS, RESET_GAME } from '../constants/colorConstants'
 
 const initialState = {
   userColors: [],
@@ -16,6 +16,11 @@ const reducer = (state = initialState, action = {} ) => {
       let clonedColors = _.clone(state.shapeColors)
       clonedColors[action.payload.squareIndex] = action.payload.newColor
       return {...state, shapeColors: clonedColors}
+    case CLEAR_USER_COLORS:
+      return {...state, userColors: [] }
+    case RESET_GAME:
+      console.log('game has been reset')
+      return initialState
     default:
       return state
   }

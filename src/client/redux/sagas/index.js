@@ -1,9 +1,11 @@
-import {addGameColor, changeBackgroundColor} from '../actions/colorActions'
-import {put, select} from 'redux-saga/effects'
-import {takeEvery} from 'redux-saga'
+import {addGameColor, changeBackgroundColor, clearUserColors} from '../actions/colorActions'
+import {put, select, call} from 'redux-saga/effects'
+import {takeEvery, delay} from 'redux-saga'
 import {START_GAME} from '../constants/colorConstants'
 import {getGameColors} from '../selectors/index'
 import _ from 'lodash'
+
+const colorMap = ['red', 'blue', 'purple', 'green']
 
 function* gameColorAction(){
   const colors = [0, 1, 2, 3]
@@ -13,14 +15,17 @@ function* gameColorAction(){
 function* flashColors(){
   const localGameColors = yield select(getGameColors);
   console.log({test: localGameColors});
-  yield put(changeBackgroundColor(0, 'white'))
-  for(let gameColor in localGameColors){
-    console.log('blah')
+  for (var i = 0; i < localGameColors.length; i++) {
+    let gameColor = localGameColors[i]
     yield put(changeBackgroundColor(gameColor, 'white'))
+    yield call(delay, 500)
+    yield put(changeBackgroundColor(gameColor, colorMap[gameColor]))
+    yield call(delay, 500)
   }
 }
 
 export function* colorSaga() {
+  clearUserColors()
   yield* gameColorAction()
   yield* flashColors()
 }

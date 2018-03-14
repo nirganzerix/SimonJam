@@ -1,12 +1,19 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {addColor} from '../redux/actions/colorActions';
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import {connect, select} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {addColor, resetGame} from '../redux/actions/colorActions'
+import {isUserCorrect} from '../redux/selectors/index'
 
-const SimonShape = ({color, addColor}) => {
+const SimonShape = ({color, addColor, isCorrect, index, resetGame}) => {
   const addInput = () => {
-    addColor(color);
+    addColor(index)
+    if(isCorrect){
+      console.log('CORRECT')
+    } else {
+      console.log('YOU SUCK')
+      resetGame()
+    }
   }
 
   return (
@@ -25,11 +32,11 @@ const SimonShape = ({color, addColor}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addColor}, dispatch);
+  return bindActionCreators({addColor, resetGame}, dispatch);
 }
 
 const mapStateToProps = (store) => {
-  return {};
+  return {isCorrect: isUserCorrect(store)};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimonShape);
